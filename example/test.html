@@ -21,9 +21,8 @@
         //https://spatialreference.org/ref/epsg/32633/html/
         const proj = d3.geoTransverseMercator()
             .rotate([-15, 0])
-            //.reflectX(false)
             .reflectY(true)
-            .scale(6378137)//0.9996
+            .scale(6378137)
             .translate([2500000, -27000])
 
         //define application
@@ -34,7 +33,7 @@
             .setLabelLayer(gviz_es.getEuronymeLabelLayer('NO', '20', {
                 proj: proj
             }))
-            .setBoundaryLayer(gviz_es.getEurostatBoundariesLayer({ proj: proj }))
+            .setBoundaryLayer(gviz_es.getEurostatBoundariesLayer({ crs: "4326", proj: proj }))
         //TODO add boundaries with projection
 
 

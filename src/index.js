@@ -69,16 +69,16 @@ export const getEurostatBoundariesLayer = function (opts) {
     //in most of the case, already projected data of nuts2json will be used, using 'opts.crs'
     if (opts.proj)
         opts.preprocess = (bn) => {
-            //exclude countries
-            //if(opts.ccOut && lb.cc && opts.ccOut.includes(lb.cc)) return false;
-            //if (opts.ccIn && lb.cc && !(opts.ccIn.indexOf(lb.cc) >= 0)) return false
 
-            //project from geo coordinates to ETRS89-LAEA
-            //const p = opts.proj([lb.lon, lb.lat])
-            //lb.x = p[0]
-            //lb.y = p[1]
-            //delete lb.lon
-            //delete lb.lat
+            if (bn.geometry.type === "LineString") {
+                const cs = []
+                for (let c of bn.geometry.coordinates)
+                    cs.push(opts.proj(c))
+                bn.geometry.coordinates = cs
+            } else {
+                console.warn("Could not project boundary - unsupported geometry type: " + bn.geometry.type)
+            }
+
         }
 
 
