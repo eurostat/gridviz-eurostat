@@ -5,7 +5,7 @@ module.exports = {
     mode: 'development',
     output: {
         filename: 'gridviz-eurostat.js',
-        library: 'gviz_sm',
+        library: 'gviz_es',
         libraryTarget: 'umd',
     },
     plugins: [new LiveReloadPlugin()],
