@@ -2,7 +2,7 @@ module.exports = {
     mode: 'production',
     output: {
         filename: 'gridviz-eurostat.min.js',
-        library: 'gviz_sm',
+        library: 'gviz_es',
         libraryTarget: 'umd',
     },
     module: {
