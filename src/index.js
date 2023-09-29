@@ -1,11 +1,12 @@
 //@ts-check
 'use strict'
 
-
 import { geoAzimuthalEqualArea } from 'd3-geo'
 
-//projection function for European LAEA.
-const proj3035 = geoAzimuthalEqualArea()
+/**
+ * Projection function for European LAEA.
+ */
+export const proj3035 = geoAzimuthalEqualArea()
     .rotate([-10, -52])
     .reflectX(false)
     .reflectY(true)
@@ -115,4 +116,3 @@ export const getEurostatBoundariesLayer = function (opts) {
     opts.url = opts.baseURL + nutsYear + '/' + crs + '/' + scale + '/nutsbn_' + nutsLevel + '.json'
     return opts
 }
-
