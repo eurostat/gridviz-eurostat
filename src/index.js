@@ -4,8 +4,16 @@
 
 import { geoAzimuthalEqualArea } from 'd3-geo'
 
+//projection function for European LAEA.
+const proj3035 = geoAzimuthalEqualArea()
+    .rotate([-10, -52])
+    .reflectX(false)
+    .reflectY(true)
+    .scale(6378137)
+    .translate([4321000, 3210000])
+
 /**
- * Returns label layer from Eurostat, for ETRS89-LAEA grids.
+ * Returns options for gridviz label layer.
  * From Euronym data: https://github.com/eurostat/euronym
  *
  * @returns {object}
@@ -22,15 +30,7 @@ export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts) {
             if (lb.r1 < ex * zf) return exSize + 'em ' + fontFamily
             return exSize * 1.5 + 'em ' + fontFamily
         })
-    //ETRS89-LAEA projection
-    opts.proj =
-        opts.proj ||
-        geoAzimuthalEqualArea()
-            .rotate([-10, -52])
-            .reflectX(false)
-            .reflectY(true)
-            .scale(6378137)
-            .translate([4321000, 3210000])
+    opts.proj = opts.proj || proj3035
     opts.preprocess = (lb) => {
         //exclude countries
         //if(opts.ccOut && lb.cc && opts.ccOut.includes(lb.cc)) return false;
@@ -48,7 +48,11 @@ export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts) {
     return opts
 }
 
+
 /**
+ * Returns options for gridviz boundaries layer.
+ * From Nuts2json data: https://github.com/eurostat/Nuts2json
+ * 
  * @returns {object}
  */
 export const getEurostatBoundariesLayer = function (opts) {
@@ -60,6 +64,8 @@ export const getEurostatBoundariesLayer = function (opts) {
     const col = opts.col || '#888'
     const colKosovo = opts.colKosovo || '#bcbcbc'
     const showOth = opts.showOth == undefined ? true : opts.showOth
+
+    opts.proj = opts.proj || undefined
 
     opts.color =
         opts.color ||
@@ -95,10 +101,10 @@ export const getEurostatBoundariesLayer = function (opts) {
                 return p.lvl == 3
                     ? [2 * zf, 2 * zf]
                     : p.lvl == 2
-                    ? [5 * zf, 2 * zf]
-                    : p.lvl == 1
-                    ? [5 * zf, 2 * zf]
-                    : [10 * zf, 3 * zf]
+                        ? [5 * zf, 2 * zf]
+                        : p.lvl == 1
+                            ? [5 * zf, 2 * zf]
+                            : [10 * zf, 3 * zf]
             else if (zf < 1000)
                 return p.lvl == 2 ? [5 * zf, 2 * zf] : p.lvl == 1 ? [5 * zf, 2 * zf] : [10 * zf, 3 * zf]
             else if (zf < 2000) return p.lvl == 1 ? [5 * zf, 2 * zf] : [10 * zf, 3 * zf]
