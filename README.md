@@ -1,2 +1,7 @@
-# gridviz-eurostat
-Utilities for using GridViz with Eurostat data, on Europe
+# Gridviz Eurostat utilities
+
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/gridviz-eurostat)
+![npm](https://img.shields.io/npm/v/gridviz-eurostat)
+![license](https://img.shields.io/badge/license-EUPL-success)
+
+Utilities for using [GridViz](https://github.com/eurostat/gridviz/) with Eurostat data, on Europe
