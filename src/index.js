@@ -66,9 +66,21 @@ export const getEurostatBoundariesLayer = function (opts) {
     const colKosovo = opts.colKosovo || '#bcbcbc'
     const showOth = opts.showOth == undefined ? true : opts.showOth
 
-    //this line is useless but to show it is possible to specify a projection function.
     //in most of the case, already projected data of nuts2json will be used, using 'opts.crs'
-    opts.proj = opts.proj || undefined
+    if (opts.proj)
+        opts.preprocess = (bn) => {
+            //exclude countries
+            //if(opts.ccOut && lb.cc && opts.ccOut.includes(lb.cc)) return false;
+            //if (opts.ccIn && lb.cc && !(opts.ccIn.indexOf(lb.cc) >= 0)) return false
+
+            //project from geo coordinates to ETRS89-LAEA
+            //const p = opts.proj([lb.lon, lb.lat])
+            //lb.x = p[0]
+            //lb.y = p[1]
+            //delete lb.lon
+            //delete lb.lat
+        }
+
 
     opts.color =
         opts.color ||
