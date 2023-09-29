@@ -66,6 +66,8 @@ export const getEurostatBoundariesLayer = function (opts) {
     const colKosovo = opts.colKosovo || '#bcbcbc'
     const showOth = opts.showOth == undefined ? true : opts.showOth
 
+    //this line is useless but to show it is possible to specify a projection function.
+    //in most of the case, already projected data of nuts2json will be used, using 'opts.crs'
     opts.proj = opts.proj || undefined
 
     opts.color =
