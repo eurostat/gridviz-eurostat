@@ -59,6 +59,7 @@ export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts) {
 export const getEurostatBoundariesLayer = function (opts) {
     opts = opts || {}
     const nutsYear = opts.nutsYear || '2021'
+    const geo = opts.geo
     const crs = opts.crs || '3035'
     const scale = opts.scale || '03M'
     const nutsLevel = opts.nutsLevel || '3'
@@ -127,6 +128,6 @@ export const getEurostatBoundariesLayer = function (opts) {
         })
 
     opts.baseURL = opts.baseURL || 'https://raw.githubusercontent.com/eurostat/Nuts2json/master/pub/v2/'
-    opts.url = opts.baseURL + nutsYear + '/' + crs + '/' + scale + '/nutsbn_' + nutsLevel + '.json'
+    opts.url = opts.baseURL + nutsYear + (geo ? '/' + geo : '') + '/' + crs + '/' + scale + '/nutsbn_' + nutsLevel + '.json'
     return opts
 }
