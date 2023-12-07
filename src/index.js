@@ -131,3 +131,13 @@ export const getEurostatBoundariesLayer = function (opts) {
     opts.url = opts.baseURL + nutsYear + (geo ? '/' + geo : '') + '/' + crs + '/' + scale + '/nutsbn_' + nutsLevel + '.json'
     return opts
 }
+
+
+
+//prepare object for gisco background layer creation
+export function giscoBackgroundLayer(map = "OSMPositronBackground", depth = 18, crs = "EPSG3035", template = {}) {
+    template.url = "https://gisco-services.ec.europa.eu/maps/tiles/" + map + "/" + crs + "/"
+    template.resolutions = Array.from({ length: depth }, (_, i) => 156543.03392804097 * Math.pow(2, -i))
+    template.origin = [0, 6000000]
+    return template
+}
