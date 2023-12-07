@@ -1,6 +1,6 @@
 {
     "name": "gridviz-eurostat",
-    "version": "2.0.0",
+    "version": "1.0.2",
     "description": "Utilities for using GridViz with Eurostat data, on Europe",
     "keywords": [],
     "homepage": "https://github.com/eurostat/gridviz-eurostat",
@@ -34,7 +34,6 @@
         "src/**/*.js"
     ],
     "dependencies": {
-        "gridviz": "^3.0.0",
         "d3-geo": "^3.0.1"
     },
     "devDependencies": {
