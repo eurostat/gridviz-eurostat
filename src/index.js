@@ -44,7 +44,7 @@ export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts) {
         delete lb.lon
         delete lb.lat
     }
-    opts.baseURL = opts.baseURL || 'https://raw.githubusercontent.com/eurostat/euronym/main/pub/v2/UTF/'
+    opts.baseURL = opts.baseURL || 'https://raw.githubusercontent.com/eurostat/euronym/main/pub/v3/UTF_LATIN/'
     opts.url = opts.baseURL + res + '/' + cc + '.csv'
     return opts
 }
