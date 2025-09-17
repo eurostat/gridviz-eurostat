@@ -23,7 +23,7 @@ export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts) {
     opts = opts || {}
     const ex = opts.ex || 1.2
     const fontFamily = opts.fontFamily || 'Arial'
-    const exSize = opts.exSize || 1
+    const exSize = opts.exSize || 1.2
     opts.style =
         opts.style ||
         ((lb, zf) => {
