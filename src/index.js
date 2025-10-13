@@ -135,7 +135,8 @@ export const getEurostatBoundariesLayer = function (opts) {
 
 
 //prepare object for gisco background layer creation
-export function giscoBackgroundLayer(map = "OSMPositronBackground", depth = 18, crs = "EPSG3035", template = {}) {
+//see https://gisco-services.ec.europa.eu/maps/demo/?wmts_layer=OSMPositronBackground&format=png&srs=EPSG%3A3035
+export function giscoBackgroundLayer(map = "OSMPositronBackground", depth = 19, crs = "EPSG3035", template = {}) {
     template.url = "https://gisco-services.ec.europa.eu/maps/tiles/" + map + "/" + crs + "/"
     template.resolutions = Array.from({ length: depth }, (_, i) => 156543.03392804097 * Math.pow(2, -i))
     template.origin = [0, 6000000]
