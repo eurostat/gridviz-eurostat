@@ -1,17 +1,39 @@
 //@ts-check
 'use strict'
 
-import { geoAzimuthalEqualArea } from 'd3-geo'
+import proj4 from "proj4";
+
+// EPSG:3035 definition
+proj4.defs("EPSG:3035",
+  "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs"
+);
+const transform = proj4(proj4.WGS84, "EPSG:3035");
 
 /**
  * Projection function for European LAEA.
+ * From [lon,lat] to [x,y]
  */
-export const proj3035 = geoAzimuthalEqualArea()
+export const proj3035 = transform.forward;
+
+
+//test
+//console.log(proj3035([33.003, 34.747]))
+//1615067,2  6415728,5
+
+
+//import { geoAzimuthalEqualArea } from 'd3-geo'
+//"d3-geo": "^3.0.1",
+
+/*export const proj3035 = geoAzimuthalEqualArea()
     .rotate([-10, -52])
     .reflectX(false)
     .reflectY(true)
-    .scale(6378137)
+    .scale(6370997) //6378137
     .translate([4321000, 3210000])
+*/
+
+
+
 
 /**
  * Returns options for gridviz label layer.
