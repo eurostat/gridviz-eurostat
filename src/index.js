@@ -41,7 +41,7 @@ export const proj3035 = transform.forward;
  *
  * @returns {object}
  */
-export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts) {
+export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts={}) {
     opts = opts || {}
     const ex = opts.ex || 1.2
     const fontFamily = opts.fontFamily || 'Arial'
