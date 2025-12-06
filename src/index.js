@@ -60,7 +60,7 @@ export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts={}) {
         if (opts.ccIn && lb.cc && !(opts.ccIn.indexOf(lb.cc) >= 0)) return false
 
         //project from geo coordinates to ETRS89-LAEA
-        const p = opts.proj([lb.lon, lb.lat])
+        const p = opts.proj([+lb.lon, +lb.lat])
         lb.x = p[0]
         lb.y = p[1]
         delete lb.lon
@@ -164,3 +164,4 @@ export function giscoBackgroundLayer(map = "OSMPositronBackground", depth = 19, 
     template.origin = [0, 6000000]
     return template
 }
+
