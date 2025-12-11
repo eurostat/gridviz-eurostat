@@ -80,16 +80,16 @@ export const getEuronymeLabelLayer = function (cc = 'EUR', res = 50, opts={}) {
  */
 export const getEurostatBoundariesLayer = function (opts) {
     opts = opts || {}
-    const nutsYear = opts.nutsYear || '2021'
+    const nutsYear = opts.nutsYear || '2024'
     const geo = opts.geo
     const crs = opts.crs || '3035'
     const scale = opts.scale || '03M'
     const nutsLevel = opts.nutsLevel || '3'
-    const col = opts.col || '#888'
+    const col = opts.color || opts.col || '#888'
     const colKosovo = opts.colKosovo || '#bcbcbc'
     const showOth = opts.showOth == undefined ? true : opts.showOth
 
-    //in most of the case, already projected data of nuts2json will be used, using 'opts.crs'
+    //in most cases, already projected data of nuts2json will be used, using 'opts.crs'
     if (opts.proj)
         opts.preprocess = (bn) => {
 
@@ -112,11 +112,12 @@ export const getEurostatBoundariesLayer = function (opts) {
             if (!showOth /*&& p.co == "F"*/ && p.eu != 'T' && p.cc != 'T' && p.efta != 'T' && p.oth === 'T')
                 return
             if (p.id >= 100000) return colKosovo
-            if (p.co === 'T') return col
+            return col
+            /*if (p.co === 'T') return col
             if (zf < 400) return col
             else if (zf < 1000) return p.lvl >= 3 ? '' : col
             else if (zf < 2000) return p.lvl >= 2 ? '' : col
-            else return p.lvl >= 1 ? '' : col
+            else return p.lvl >= 1 ? '' : col*/
         })
 
     opts.width =
