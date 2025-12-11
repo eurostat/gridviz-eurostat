@@ -85,7 +85,7 @@ export const getEurostatBoundariesLayer = function (opts) {
     const crs = opts.crs || '3035'
     const scale = opts.scale || '03M'
     const nutsLevel = opts.nutsLevel || '3'
-    const col = opts.color || opts.col || '#888'
+    const col = opts.col || '#888'
     const colKosovo = opts.colKosovo || '#bcbcbc'
     const showOth = opts.showOth == undefined ? true : opts.showOth
 
@@ -112,12 +112,12 @@ export const getEurostatBoundariesLayer = function (opts) {
             if (!showOth /*&& p.co == "F"*/ && p.eu != 'T' && p.cc != 'T' && p.efta != 'T' && p.oth === 'T')
                 return
             if (p.id >= 100000) return colKosovo
-            return col
-            /*if (p.co === 'T') return col
+            //return col
+            if (p.co === 'T') return col
             if (zf < 400) return col
             else if (zf < 1000) return p.lvl >= 3 ? '' : col
             else if (zf < 2000) return p.lvl >= 2 ? '' : col
-            else return p.lvl >= 1 ? '' : col*/
+            else return p.lvl >= 1 ? '' : col
         })
 
     opts.width =
