@@ -1,6 +1,6 @@
 {
     "name": "gridviz-eurostat",
-    "version": "2.1.1",
+    "version": "2.2.1",
     "description": "Utilities for using GridViz with Eurostat data, on Europe",
     "keywords": [],
     "homepage": "https://github.com/eurostat/gridviz-eurostat",
